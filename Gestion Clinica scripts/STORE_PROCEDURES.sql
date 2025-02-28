@@ -10,18 +10,12 @@ BEGIN
 END;
 GO
 
-EXEC ObtenerPacientes;
-GO
-
 -- Obtener Especialidades
 CREATE PROCEDURE ObtenerEspecialidad
 AS
 BEGIN
 	SELECT * FROM Especialidad;
 END;
-GO
-
-EXEC ObtenerEspecialidad;
 GO
 
 --Obtener Medicos
@@ -32,18 +26,12 @@ BEGIN
 END;
 GO
 
-EXEC ObtenerMedicos;
-GO
-
 --Obtener Citas
 CREATE PROCEDURE ObtenerCitas
 AS
 BEGIN
 	SELECT * FROM Citas;
 END;
-GO
-
-EXEC ObtenerCitas;
 GO
 
 
@@ -67,6 +55,14 @@ END
 GO
 
 --Guardar Medicos
+CREATE PROCEDURE GuardarMedico @CedulaMedico VARCHAR(30), @Nombre VARCHAR(30), @Email VARCHAR(30), @Id_Especialidad INT, @Tel VARCHAR(20)
+AS
+BEGIN
+	INSERT INTO Medicos (CedulaMedico, Nombre, Email, Id_Especialidad, Tel) VALUES (@CedulaMedico, @Nombre, @Email, @Id_Especialidad, @Tel);
+END
+GO
+	
+--Guardar Citas
 CREATE PROCEDURE GuardarCita @CED_PacienteCita VARCHAR(30),@Id_MedicoCita INT,  @Id_Paciente INT, @Id_Medico INT, @Fecha DATE, @HoraInicio TIME, @HoraFinal TIME
 AS
 BEGIN
